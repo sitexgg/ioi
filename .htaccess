@@ -1,0 +1,52 @@
+#не достающий слеш в конце url
+RewriteCond %{REQUEST_URI} /+[^\.]+$
+RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
+
+#перенаправление на htttps
+RewriteEngine On
+RewriteCond %{HTTPS} !on
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+#доменное имя без www
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.ioi\.kz$ [NC]
+RewriteRule ^(.*)$ http://ioi.kz/$1 [R=301,L]
+
+#блокировка возможности кражи контетнта
+RewriteEngine On
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http://([ -a-z0-9] \.)?vash-sait\.ru [NC]
+RewriteRule \.(gif|jpe?g|png)$ - [F,NC,L]
+
+#путь к страници с ошибкой 404
+ErrorDocument 404 "/404.html"
+
+#определение кодировки передоваемых файлов
+AddDefaultCharset UTF-8
+
+#отпределение кодировки на загружаемые файлы
+CharsetSourceEnc UTF-8
+
+#запрещение доступа ко всем файлам
+deny from all
+
+#работа php в файлах html
+RemoveHandler .php .htm .html
+AddHandler application/x-httpd-php .php .htm .html
+
+
+RewriteEngine on
+#First rewrite any request to the wrong domain to use the correct one (here www.)
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/[0-9a-zA-Z_-]+$
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#Now, rewrite to HTTPS:
+RewriteCond %{HTTPS} on!
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/[0-9a-zA-Z_-]+$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

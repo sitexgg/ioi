@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /.well-known/
+Disallow: /cgi-bin/
+
+Host: http://ioi.kz/
+
+Sitemap: http://ioi.kz/sitemap.xml
