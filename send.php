@@ -1,14 +1,9 @@
-<?php
-$fio = $_POST['fio'];
-$number = $_POST['number'];
-$fio = htmlspecialchars($fio);
-$number = htmlspecialchars($number);
-$fio = urldecode($fio);
-$number = urldecode($number);
-$fio = trim($fio);
-$number = trim($number);
-if (mail("reksadorus@gmail.com", "Заявка с сайта", "ФИО:".$fio.". E-mail: ".$number ,"From: reksadorus@gmail.com \r\n"))
- {     header('Location: index.html'); 
-} else { 
-    echo "при отправке сообщения возникли ошибки";
-}?>
+**************************---WORK---**************************
+
+13.11.18
+1 - Найти картинку для мобильной версии сайта gruzohod на главную страницу.
+	- Изменить, оптимизировать и адаптировать.
+2 - Расширить услуги и транспорт по списку с Whatsapp-a для gruzohod,
+	- Десять новых пунктов.
+3 - Переделать логотип для gruzohod.
+4 - Позвонить Константину К., обсудить создание BisnesWhatsApp-a.
