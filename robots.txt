@@ -5,3 +5,4 @@ Disallow: /cgi-bin/
 Host: http://ioi.kz/
 
 Sitemap: http://ioi.kz/sitemap.xml
+
