@@ -3,6 +3,7 @@ RewriteCond %{REQUEST_URI} /+[^\.]+$
 RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
  
  
+ 
 #перенаправление на htttps
 RewriteEngine On
 RewriteCond %{HTTPS} !on
